@@ -33,6 +33,10 @@ WORKDIR /usr/config
 COPY entrypoint.sh /usr/config
 COPY configure-db.sh /usr/config
 
+# Grant permissions for to our scripts to be executable
+RUN chmod +x /usr/config/entrypoint.sh
+RUN chmod +x /usr/config/configure-db.sh
+
 RUN mkdir -p /var/opt/mssql && \
     chmod -R g=u /var/opt/mssql /etc/passwd
 
@@ -41,11 +45,6 @@ USER 10001
 
 # Default SQL Server TCP/Port
 EXPOSE 1433
-
-
-# Grant permissions for to our scripts to be executable
-RUN chmod +x /usr/config/entrypoint.sh
-RUN chmod +x /usr/config/configure-db.sh
 
 ENTRYPOINT ["./entrypoint.sh"]
 
