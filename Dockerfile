@@ -40,7 +40,7 @@ RUN mkdir -p /var/opt/mssql && \
 USER 10001
 
 # Default SQL Server TCP/Port
-EXPOSE $TCP_PORT
+EXPOSE 1433
 
 
 # Grant permissions for to our scripts to be executable
